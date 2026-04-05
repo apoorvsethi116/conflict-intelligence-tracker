@@ -100,8 +100,7 @@ npm run dev:client
 
 ### 3. Open the app
 
-Visit **http://localhost:3000**
-
+Visit 
 ---
 
 ## 📊 Adding Conflict Data
