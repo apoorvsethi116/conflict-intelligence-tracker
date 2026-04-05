@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { conflictsData, conflictTypeColors, statusColors } from '../data/conflictsData';
+import { conflictTypeColors, statusColors } from '../data/conflictsData';
 import Navbar from '../components/Navbar';
 import MilitaryComparison from '../components/MilitaryComparison';
 import PowerRankings from '../components/PowerRankings.js';
@@ -108,9 +108,26 @@ export default function ConflictDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('overview');
-  const conflict = conflictsData.find(c => c.id === id);
+  const [conflict, setConflict] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => { window.scrollTo(0, 0); }, [id]);
+
+  useEffect(() => {
+    setLoading(true);
+    fetch(`/api/conflicts?id=${encodeURIComponent(id)}`)
+      .then(res => res.ok ? res.json() : null)
+      .then(data => { setConflict(data); setLoading(false); })
+      .catch(() => { setConflict(null); setLoading(false); });
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh', background: '#050810', color: '#4a5568', fontFamily: "'Share Tech Mono', monospace", fontSize: '0.75rem', letterSpacing: '0.1em' }}>
+        LOADING INTELLIGENCE DATA...
+      </div>
+    );
+  }
 
   if (!conflict) {
     return (

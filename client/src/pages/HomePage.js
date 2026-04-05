@@ -1,26 +1,34 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Globe from '../components/Globe';
 import ConflictCard from '../components/ConflictCard';
 import StatsBar from '../components/StatsBar';
-import { conflictsData, conflictTypeColors } from '../data/conflictsData';
+import { conflictTypeColors } from '../data/conflictsData';
 import { useNavigate } from 'react-router-dom';
 
 const FILTER_TYPES = ['all', 'civil war', 'proxy war', 'interstate war'];
 
 export default function HomePage() {
+  const [conflicts, setConflicts] = useState([]);
   const [selectedConflict, setSelectedConflict] = useState(null);
   const [hoveredConflict, setHoveredConflict] = useState(null);
   const [filter, setFilter] = useState('all');
   const [search, setSearch] = useState('');
   const navigate = useNavigate();
 
+  useEffect(() => {
+    fetch('/api/conflicts')
+      .then(res => res.json())
+      .then(json => setConflicts(json.data || []))
+      .catch(() => setConflicts([]));
+  }, []);
+
   const filteredConflicts = useMemo(() => {
-    return conflictsData
+    return conflicts
       .filter(c => filter === 'all' || c.conflictType === filter)
       .filter(c => !search || c.country.toLowerCase().includes(search.toLowerCase()))
       .sort((a, b) => b.severity - a.severity);
-  }, [filter, search]);
+  }, [conflicts, filter, search]);
 
   const handleSelect = (conflict) => {
     setSelectedConflict(conflict);
@@ -33,7 +41,7 @@ export default function HomePage() {
 
       {/* Stats bar */}
       <div style={{ marginTop: '64px' }}>
-        <StatsBar conflicts={conflictsData} />
+        <StatsBar conflicts={conflicts} />
       </div>
 
       {/* Main layout */}
