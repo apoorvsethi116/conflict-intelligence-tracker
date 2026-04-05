@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "buildCommand": "npm run build",
+  "outputDirectory": "client/build",
+  "installCommand": "npm install --prefix client",
+  "functions": {
+    "api/*.js": {
+      "includeFiles": "public/api-data/**"
+    }
+  },
+  "rewrites": [
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
+  ]
+}
