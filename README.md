@@ -203,7 +203,7 @@ The platform operates as a **3-tier microservice architecture**:
 
 ## 📊 Data Schema (Predictive Model)
 
-```json
+``json
 // {
 //   "node_id": "UKR-01",
 //   "coordinates": { "lat": 48.37, "lng": 31.16 },
