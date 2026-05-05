@@ -9,6 +9,5 @@
   { "rank": 8, "country": "Turkey", "countryCode": "TR", "score": 0.1648, "activePersonnel": 380000, "tanks": 2889, "aircraft": 1077, "navy": 194, "budget": 39400000000, "nuclearWarheads": 0 },
   { "rank": 9, "country": "Pakistan", "countryCode": "PK", "score": 0.1711, "activePersonnel": 654000, "tanks": 2627, "aircraft": 1387, "navy": 121, "budget": 10300000000, "nuclearWarheads": 170 },
   { "rank": 10, "country": "Brazil", "countryCode": "BR", "score": 0.1765, "activePersonnel": 366500, "tanks": 469, "aircraft": 729, "navy": 110, "budget": 19200000000, "nuclearWarheads": 0 }
-    { "rank": 10, "country": "Brazil", "countryCode": "BR", "score": 0.1765, "activePersonnel": 366500, "tanks": 469, "aircraft": 729, "navy": 110, "budget": 19200000000, "nuclearWarheads": 0 }
 
 ]
